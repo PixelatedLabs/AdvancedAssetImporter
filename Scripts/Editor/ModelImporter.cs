@@ -18,8 +18,6 @@ namespace AdvancedAssetImporter
 					MeshFilter filter = child.GetComponent<MeshFilter>();
 					box.center = filter.sharedMesh.bounds.center;
 					box.size = filter.sharedMesh.bounds.size;
-					Object.DestroyImmediate(filter);
-					Object.DestroyImmediate(child.GetComponent<MeshRenderer>());
 				}
 				//Mesh collider
 				if (child.name.Contains("COL_MSH"))
@@ -27,8 +25,6 @@ namespace AdvancedAssetImporter
 					MeshCollider collider = child.AddComponent<MeshCollider>();
 					MeshFilter filter = child.GetComponent<MeshFilter>();
 					collider.sharedMesh = filter.sharedMesh;
-					Object.DestroyImmediate(filter);
-					Object.DestroyImmediate(child.GetComponent<MeshRenderer>());
 				}
 				//Convex mesh collider
 				if (child.name.Contains("COL_CVX"))
@@ -37,8 +33,6 @@ namespace AdvancedAssetImporter
 					MeshFilter filter = child.GetComponent<MeshFilter>();
 					collider.sharedMesh = filter.sharedMesh;
 					collider.convex = true;
-					Object.DestroyImmediate(filter);
-					Object.DestroyImmediate(child.GetComponent<MeshRenderer>());
 				}
 				//Lightmap static
 				if (child.name.Contains("STC_LGT"))
@@ -74,6 +68,12 @@ namespace AdvancedAssetImporter
 				if (child.name.Contains("STC_RFL"))
 				{
 					child.AddStaticEditorFlags(StaticEditorFlags.ReflectionProbeStatic);
+				}
+				//Removes mesh filter and renderer
+				if (child.name.Contains("RMV_MSH"))
+				{
+					Object.DestroyImmediate(child.GetComponent<MeshFilter>());
+					Object.DestroyImmediate(child.GetComponent<MeshRenderer>());
 				}
 			}
         }
