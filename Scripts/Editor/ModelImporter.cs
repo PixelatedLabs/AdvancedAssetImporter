@@ -34,6 +34,13 @@ namespace AdvancedAssetImporter
 					collider.sharedMesh = filter.sharedMesh;
 					collider.convex = true;
 				}
+				//Sphere collider
+				if (child.name.Contains("COL_SPH"))
+				{
+					SphereCollider collider = child.AddComponent<SphereCollider>();
+					MeshFilter filter = child.GetComponent<MeshFilter>();
+					collider.radius = filter.sharedMesh.bounds.size.magnitude / 2;
+				}
 				//Lightmap static
 				if (child.name.Contains("STC_LGT"))
 				{
