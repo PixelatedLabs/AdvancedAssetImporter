@@ -41,6 +41,11 @@ namespace AdvancedAssetImporter
 					MeshFilter filter = child.GetComponent<MeshFilter>();
 					collider.radius = filter.sharedMesh.bounds.size.magnitude / 2;
 				}
+				//All static
+				if (child.name.Contains("STC_ALL"))
+				{
+					child.isStatic = true;
+				}
 				//Lightmap static
 				if (child.name.Contains("STC_LGT"))
 				{
@@ -83,6 +88,6 @@ namespace AdvancedAssetImporter
 					Object.DestroyImmediate(child.GetComponent<MeshRenderer>());
 				}
 			}
-        }
+		}
 	}
 }
